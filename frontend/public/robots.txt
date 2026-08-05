@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Disallow non-public paths if added later
+Disallow: /api/
+
+Sitemap: https://khushidecorations.com/sitemap.xml

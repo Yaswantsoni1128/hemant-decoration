@@ -1,0 +1,24 @@
+{
+  "name": "KhushiDecoration",
+  "short_name": "KhushiDecoration",
+  "description": "Event and balloon decorations for birthdays, anniversaries, proposals, and celebrations.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f4ef",
+  "theme_color": "#b45309",
+  "lang": "en-IN",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

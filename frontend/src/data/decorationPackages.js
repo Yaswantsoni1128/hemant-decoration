@@ -1,0 +1,46 @@
+export const DECORATION_PACKAGES = [
+  {
+    id: 'silver',
+    name: 'Silver Celebration',
+    price: '₹1,999',
+    popular: false,
+    description: 'Perfect for cozy home celebrations, bedrooms, and intimate family surprise setups.',
+    features: [
+      '150 Premium Metallic Balloons',
+      'Happy Birthday / Anniversary Neon Sign',
+      'Ribbon Floaters & Floor Balloons',
+      '2 Stand Pillars / Arch Accent',
+      '1.5 Hours Quick Onsite Setup',
+    ],
+  },
+  {
+    id: 'gold',
+    name: 'Gold Luxury Royal',
+    price: '₹3,999',
+    popular: true,
+    description: 'Our most loved package for living rooms, terraces, and medium party halls.',
+    features: [
+      '300 Organic & Chrome Balloons',
+      'Custom Ring Backdrop / Circular Arch',
+      'LED Neon Sign + Marquee Numbers',
+      'Fairy Light Canopy Setup',
+      'Foil Balloons & Heart/Star Accents',
+      'Free Theme Customization',
+    ],
+  },
+  {
+    id: 'platinum',
+    name: 'Platinum Grand Event',
+    price: '₹7,999',
+    popular: false,
+    description: 'Ultimate grand transformation for banquet halls, large garden parties, and weddings.',
+    features: [
+      '600+ Luxury Chrome & Pastel Balloons',
+      'Double Circular Arch / Floral Backdrop',
+      'Large LED Marquee Letters ("MARRY ME" / Name)',
+      'Cold Pyro Fireworks (2 Shots)',
+      'Red Carpet Pathway & Candle Aisle',
+      'Dedicated On-site Manager',
+    ],
+  },
+];
