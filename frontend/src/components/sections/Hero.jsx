@@ -1,23 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { FaPhoneAlt, FaCalendarCheck } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { STRINGS } from '../../constants/strings';
 import { CONTACT_DETAILS } from '../../constants/contact';
 import Button from '../buttons/Button';
-import ConfirmModal from '../common/ConfirmModal';
-import { openWhatsApp } from '../../utils/whatsapp';
+import { useContactConfirm } from '../../context/ContactConfirmContext';
 import { getAsset } from '../../assets';
 
 const HERO_IMAGE = getAsset('MarriageSetup', 1);
 
 const Hero = () => {
-  const [whatsappConfirmOpen, setWhatsappConfirmOpen] = useState(false);
-
-  const handleConfirmWhatsApp = () => {
-    setWhatsappConfirmOpen(false);
-    openWhatsApp();
-  };
+  const { confirmWhatsApp, confirmCall } = useContactConfirm();
 
   return (
     <section className="relative min-h-[100svh] flex items-end sm:items-center overflow-hidden" aria-label="Hero">
@@ -76,24 +70,26 @@ const Hero = () => {
           <Button
             variant="primary"
             size="lg"
-            onClick={() => setWhatsappConfirmOpen(true)}
+            onClick={() => confirmWhatsApp()}
             icon={FaCalendarCheck}
             aria-label="Book a decoration consultation on WhatsApp"
+            className="rounded-full"
           >
             {STRINGS.hero.ctaPrimary}
           </Button>
 
-          <a
-            href={`tel:${CONTACT_DETAILS.phoneRaw}`}
+          <button
+            type="button"
+            onClick={confirmCall}
             aria-label={`Call ${CONTACT_DETAILS.companyName} at ${CONTACT_DETAILS.phoneDisplay}`}
-            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold bg-white/15 hover:bg-white/25 text-white border border-white/30 text-base transition backdrop-blur-md"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-semibold bg-white/15 hover:bg-white/25 text-white border border-white/30 text-base transition backdrop-blur-md"
           >
             <FaPhoneAlt className="text-amber-300 text-sm" aria-hidden="true" /> Call Now
-          </a>
+          </button>
 
           <Link
             to="/services"
-            className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-semibold text-white/90 hover:text-white text-base underline-offset-4 hover:underline transition"
+            className="inline-flex items-center justify-center px-7 py-3.5 rounded-full font-semibold text-white/90 hover:text-white text-base underline-offset-4 hover:underline transition"
           >
             {STRINGS.hero.ctaSecondary}
           </Link>
@@ -125,16 +121,6 @@ const Hero = () => {
           </div>
         </motion.div>
       </div>
-
-      <ConfirmModal
-        isOpen={whatsappConfirmOpen}
-        title="Open WhatsApp?"
-        message="Are you sure you want to open WhatsApp to book your consultation?"
-        confirmText="OK"
-        cancelText="Cancel"
-        onConfirm={handleConfirmWhatsApp}
-        onCancel={() => setWhatsappConfirmOpen(false)}
-      />
     </section>
   );
 };

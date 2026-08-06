@@ -1,13 +1,15 @@
 import React from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import { openWhatsApp } from '../../utils/whatsapp';
+import { useContactConfirm } from '../../context/ContactConfirmContext';
 
 const FloatingWhatsApp = () => {
+  const { confirmWhatsApp } = useContactConfirm();
+
   return (
     <motion.button
       type="button"
-      onClick={() => openWhatsApp()}
+      onClick={() => confirmWhatsApp()}
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       whileHover={{ scale: 1.08 }}

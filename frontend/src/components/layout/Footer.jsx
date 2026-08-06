@@ -4,8 +4,11 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/
 import { CONTACT_DETAILS } from '../../constants/contact';
 import { SERVICES } from '../../constants/services';
 import { NAV_ITEMS } from '../../constants/navigation';
+import { useContactConfirm } from '../../context/ContactConfirmContext';
 
 const Footer = () => {
+  const { confirmWhatsApp, confirmCall } = useContactConfirm();
+
   return (
     <footer className="surface-secondary text-theme-muted border-t border-theme pt-16 pb-8 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -20,15 +23,14 @@ const Footer = () => {
               {CONTACT_DETAILS.tagline}. Balloon installations, room setups, and party decorations tailored to your theme.
             </p>
             <div className="flex items-center gap-3 pt-2">
-              <a
-                href={`https://wa.me/${CONTACT_DETAILS.phoneRaw}`}
-                target="_blank"
-                rel="noreferrer"
+              <button
+                type="button"
+                onClick={() => confirmWhatsApp()}
                 aria-label="Chat on WhatsApp"
-                className="w-9 h-9 rounded-xl surface-elevated hover:bg-emerald-500 hover:text-white flex items-center justify-center text-emerald-600 border border-theme transition"
+                className="w-9 h-9 rounded-full surface-elevated hover:bg-emerald-500 hover:text-white flex items-center justify-center text-emerald-600 border border-theme transition"
               >
                 <FaWhatsapp />
-              </a>
+              </button>
             </div>
           </div>
 
@@ -72,9 +74,13 @@ const Footer = () => {
             </div>
             <div className="flex items-center gap-3 text-xs">
               <FaPhoneAlt className="accent-text text-sm shrink-0" />
-              <a href={`tel:${CONTACT_DETAILS.phoneRaw}`} className="hover:text-theme transition">
+              <button
+                type="button"
+                onClick={confirmCall}
+                className="hover:text-theme transition text-left"
+              >
                 {CONTACT_DETAILS.phoneDisplay}
-              </a>
+              </button>
             </div>
             <div className="flex items-center gap-3 text-xs">
               <FaEnvelope className="accent-text text-sm shrink-0" />

@@ -4,14 +4,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaPhoneAlt, FaBars, FaTimes, FaWhatsapp, FaMoon, FaSun } from 'react-icons/fa';
 import { NAV_ITEMS } from '../../constants/navigation';
 import { CONTACT_DETAILS } from '../../constants/contact';
-import { openWhatsApp } from '../../utils/whatsapp';
 import { useTheme } from '../../context/ThemeContext';
+import { useContactConfirm } from '../../context/ContactConfirmContext';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { isDark, toggleTheme } = useTheme();
+  const { confirmWhatsApp, confirmCall } = useContactConfirm();
   const isHome = location.pathname === '/';
   const overHero = isHome && !isScrolled;
 
@@ -85,18 +86,20 @@ const Navbar = () => {
             </button>
 
             <button
-              onClick={() => openWhatsApp()}
-              className="flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-xl bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500 hover:text-white transition"
+              type="button"
+              onClick={() => confirmWhatsApp()}
+              className="flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500 hover:text-white transition"
             >
               <FaWhatsapp className="text-sm" /> WhatsApp
             </button>
 
-            <a
-              href={`tel:${CONTACT_DETAILS.phoneRaw}`}
-              className="flex items-center gap-2 text-xs font-bold px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-600 text-stone-950 hover:brightness-110 shadow-md gold-glow transition"
+            <button
+              type="button"
+              onClick={confirmCall}
+              className="flex items-center gap-2 text-xs font-bold px-4 py-2.5 rounded-full bg-gradient-to-r from-amber-400 to-yellow-600 text-stone-950 hover:brightness-110 shadow-md gold-glow transition"
             >
               <FaPhoneAlt className="text-xs" /> {CONTACT_DETAILS.phoneDisplay}
-            </a>
+            </button>
           </div>
 
           <div className="md:hidden flex items-center gap-2">
@@ -109,13 +112,14 @@ const Navbar = () => {
             >
               {isDark ? <FaSun className="text-sm" /> : <FaMoon className="text-sm" />}
             </button>
-            <a
-              href={`tel:${CONTACT_DETAILS.phoneRaw}`}
-              className="p-2.5 rounded-xl bg-amber-400 text-stone-950 font-bold"
+            <button
+              type="button"
+              onClick={confirmCall}
+              className="p-2.5 rounded-full bg-amber-400 text-stone-950 font-bold"
               aria-label="Call directly"
             >
               <FaPhoneAlt className="text-sm" />
-            </a>
+            </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className={`p-2.5 rounded-xl border ${
@@ -158,8 +162,9 @@ const Navbar = () => {
 
               <div className="pt-4 border-t border-theme flex flex-col gap-3">
                 <button
-                  onClick={() => openWhatsApp()}
-                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-emerald-500 text-white font-semibold text-sm"
+                  type="button"
+                  onClick={() => confirmWhatsApp()}
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-emerald-500 text-white font-semibold text-sm"
                 >
                   <FaWhatsapp className="text-lg" /> Chat on WhatsApp
                 </button>

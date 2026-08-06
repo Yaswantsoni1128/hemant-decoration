@@ -3,9 +3,11 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaClock, FaWhatsapp } from 'rea
 import SEO from '../../components/common/SEO';
 import InquiryForm from '../../components/forms/InquiryForm';
 import { CONTACT_DETAILS } from '../../constants/contact';
-import { openWhatsApp } from '../../utils/whatsapp';
+import { useContactConfirm } from '../../context/ContactConfirmContext';
 
 const ContactPage = () => {
+  const { confirmWhatsApp } = useContactConfirm();
+
   return (
     <>
       <SEO
@@ -95,8 +97,9 @@ const ContactPage = () => {
 
                 <div className="pt-4 border-t border-theme">
                   <button
-                    onClick={() => openWhatsApp()}
-                    className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm transition"
+                    type="button"
+                    onClick={() => confirmWhatsApp()}
+                    className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm transition"
                   >
                     <FaWhatsapp className="text-lg" /> WhatsApp
                   </button>
