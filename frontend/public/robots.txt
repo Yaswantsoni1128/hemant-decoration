@@ -4,4 +4,4 @@ Allow: /
 # Disallow non-public paths if added later
 Disallow: /api/
 
-Sitemap: https://khushidecorations.com/sitemap.xml
+Sitemap: https://www.khushidecoration.shop/sitemap.xml

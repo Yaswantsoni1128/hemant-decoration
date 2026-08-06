@@ -1,9 +1,9 @@
 /**
  * Site-wide SEO / domain config.
- * Set VITE_SITE_URL in .env for production (e.g. https://khushidecorations.com)
+ * Set VITE_SITE_URL in .env for production (e.g. https://khushidecoration.shop)
  */
 export const SITE_CONFIG = {
-  siteUrl: (import.meta.env.VITE_SITE_URL || 'https://khushidecorations.com').replace(/\/$/, ''),
+  siteUrl: (import.meta.env.VITE_SITE_URL || 'https://khushidecoration.shop').replace(/\/$/, ''),
   // Absolute Unsplash fallback until a branded /og-image.jpg is uploaded to /public
   defaultOgImage:
     'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200',
