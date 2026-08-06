@@ -16,7 +16,7 @@ app.use(helmet());
 // Enable CORS with client URL configuration
 app.use(
   cors({
-    origin: [env.clientUrl, 'http://localhost:5173', 'http://127.0.0.1:5173'],
+    origin: [env.clientUrl, env.clientUrl2, 'http://localhost:5173', 'http://127.0.0.1:5173'],
     credentials: true,
   })
 );
