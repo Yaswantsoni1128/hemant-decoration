@@ -7,17 +7,35 @@ const env = require('./config/env');
 const inquiryRoutes = require('./routes/inquiry.routes');
 const errorHandler = require('./middleware/error.middleware');
 const { sendSuccess } = require('./utils/response');
+const logger = require('./utils/logger');
 
 const app = express();
 
 // Security HTTP headers
-app.use(helmet());
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: 'cross-origin' },
+  })
+);
 
-// Enable CORS with client URL configuration
+// CORS — allow production + local frontend origins
 app.use(
   cors({
-    origin: [env.clientUrl, env.clientUrl2, 'http://localhost:5173', 'http://127.0.0.1:5173'],
+    origin(origin, callback) {
+      // Allow non-browser tools (curl/postman) with no Origin header
+      if (!origin) return callback(null, true);
+
+      if (env.allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      logger.warn(`Blocked CORS origin: ${origin}`);
+      return callback(null, false);
+    },
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    optionsSuccessStatus: 204,
   })
 );
 
@@ -31,9 +49,10 @@ app.use(morgan('dev'));
 
 // Health check endpoint
 app.get('/health', (req, res) => {
-  return sendSuccess(res, 'Event Decoration API is active and healthy', {
+  return sendSuccess(res, 'Event Decorations API is active and healthy', {
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
+    allowedOrigins: env.allowedOrigins,
   });
 });
 
