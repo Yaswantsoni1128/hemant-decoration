@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FaCheckCircle, FaArrowRight } from 'react-icons/fa';
 import { STRINGS } from '../../constants/strings';
 import { CONTACT_DETAILS } from '../../constants/contact';
+import { getAsset } from '../../assets';
 
 const AboutPreview = () => {
   return (
@@ -18,8 +19,8 @@ const AboutPreview = () => {
           >
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-xl border border-theme">
               <img
-                src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&q=80&w=800"
-                alt="Colorful balloon decoration setup by Khushi Decorations"
+                src={getAsset('Birthday', 2)}
+                alt="Colorful balloon decoration setup by KhushiDecoration"
                 width={800}
                 height={400}
                 loading="lazy"

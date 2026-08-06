@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
 import SectionHeader from '../layout/SectionHeader';
@@ -9,7 +9,17 @@ import { STRINGS } from '../../constants/strings';
 
 const GalleryPreview = () => {
   const [selectedImage, setSelectedImage] = useState(null);
-  const previewItems = GALLERY_ITEMS.slice(0, 8);
+
+  // Mix a few photos from each category for the home preview
+  const previewItems = useMemo(() => {
+    const byCategory = {};
+    GALLERY_ITEMS.forEach((item) => {
+      if (!byCategory[item.category]) byCategory[item.category] = [];
+      if (byCategory[item.category].length < 2) byCategory[item.category].push(item);
+    });
+    return Object.values(byCategory).flat().slice(0, 12);
+  }, []);
+
   const looped = [...previewItems, ...previewItems];
 
   return (

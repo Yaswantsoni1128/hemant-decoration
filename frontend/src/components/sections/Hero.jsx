@@ -6,9 +6,9 @@ import { STRINGS } from '../../constants/strings';
 import { CONTACT_DETAILS } from '../../constants/contact';
 import Button from '../buttons/Button';
 import { openWhatsApp } from '../../utils/whatsapp';
+import { getAsset } from '../../assets';
 
-const HERO_IMAGE =
-  'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1600';
+const HERO_IMAGE = getAsset('MarriageSetup', 1);
 
 const Hero = () => {
   return (

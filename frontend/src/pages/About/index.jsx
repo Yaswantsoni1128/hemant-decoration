@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FaCheckCircle, FaBullseye, FaLightbulb } from 'react-icons/fa';
 import SEO from '../../components/common/SEO';
 import { CONTACT_DETAILS } from '../../constants/contact';
+import { getAsset } from '../../assets';
 
 const About = () => {
   return (
@@ -73,8 +74,8 @@ const About = () => {
             >
               <div className="rounded-2xl overflow-hidden border border-theme shadow-xl">
                 <img
-                  src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800"
-                  alt="Khushi Decorations event setup showcase"
+                  src={getAsset('Anniversary', 2)}
+                  alt="KhushiDecoration event setup showcase"
                   width={800}
                   height={420}
                   loading="lazy"

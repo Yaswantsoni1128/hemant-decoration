@@ -24,7 +24,6 @@ const JsonLd = ({ founderName }) => {
       streetAddress: CONTACT_DETAILS.address,
       addressLocality: 'Noida',
       addressRegion: 'Uttar Pradesh',
-      postalCode: '201305',
       addressCountry: 'IN',
     },
     sameAs,
