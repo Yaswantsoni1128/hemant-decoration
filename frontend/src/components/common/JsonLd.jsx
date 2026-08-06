@@ -16,7 +16,7 @@ const JsonLd = ({ founderName }) => {
     '@type': 'Organization',
     name: CONTACT_DETAILS.companyName,
     url: SITE_CONFIG.siteUrl,
-    logo: `${SITE_CONFIG.siteUrl}/favicon.svg`,
+    logo: `${SITE_CONFIG.siteUrl}/favicon.png`,
     email: CONTACT_DETAILS.email,
     telephone: CONTACT_DETAILS.phoneDisplay,
     address: {
