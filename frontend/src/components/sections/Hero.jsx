@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaPhoneAlt, FaCalendarCheck } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { STRINGS } from '../../constants/strings';
 import { CONTACT_DETAILS } from '../../constants/contact';
 import Button from '../buttons/Button';
+import ConfirmModal from '../common/ConfirmModal';
 import { openWhatsApp } from '../../utils/whatsapp';
 import { getAsset } from '../../assets';
 
 const HERO_IMAGE = getAsset('MarriageSetup', 1);
 
 const Hero = () => {
+  const [whatsappConfirmOpen, setWhatsappConfirmOpen] = useState(false);
+
+  const handleConfirmWhatsApp = () => {
+    setWhatsappConfirmOpen(false);
+    openWhatsApp();
+  };
+
   return (
     <section className="relative min-h-[100svh] flex items-end sm:items-center overflow-hidden" aria-label="Hero">
       <div className="absolute inset-0">
@@ -68,7 +76,7 @@ const Hero = () => {
           <Button
             variant="primary"
             size="lg"
-            onClick={() => openWhatsApp()}
+            onClick={() => setWhatsappConfirmOpen(true)}
             icon={FaCalendarCheck}
             aria-label="Book a decoration consultation on WhatsApp"
           >
@@ -117,6 +125,16 @@ const Hero = () => {
           </div>
         </motion.div>
       </div>
+
+      <ConfirmModal
+        isOpen={whatsappConfirmOpen}
+        title="Open WhatsApp?"
+        message="Are you sure you want to open WhatsApp to book your consultation?"
+        confirmText="OK"
+        cancelText="Cancel"
+        onConfirm={handleConfirmWhatsApp}
+        onCancel={() => setWhatsappConfirmOpen(false)}
+      />
     </section>
   );
 };
