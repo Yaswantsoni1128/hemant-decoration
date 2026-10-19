@@ -10,10 +10,10 @@ export const CONTACT_DETAILS = {
   phoneDisplay: '+91 7340020028',
   phoneRaw: '917340020028',
   email: 'decorationkhushi@gmail.com',
-  address: 'Uttar Pradesh, Sector 49, Barola, near Ragni Park',
+  address: 'Sector 115, Chandigarh',
   workingHours: 'Mon - Sun: 09:00 AM - 09:00 PM',
   mapEmbedUrl:
-    'https://www.google.com/maps?q=Sector+49+Barola+near+Ragini+Park+Noida+Uttar+Pradesh&output=embed',
+    'https://www.google.com/maps?q=Sector+115+Chandigarh&output=embed',
 
   // Business metrics
   experienceYears: '1',
